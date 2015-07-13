@@ -77,7 +77,7 @@ namespace RememberMyKey
                 Thread preShutdownCheck = new Thread(PreShutdownCheck);
                 preShutdownCheck.Start();
 
-                MessageBox.Show("Ehi! You forgot your drives on the PC.", "REMEMBER YOUR DRIVE!!!!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                MessageBox.Show("Ehi! Hai dimenticato una o più chiavette USB collegate al PC. Rimuovile per proseguire", "Remember my drive", MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }
         }
 
@@ -116,7 +116,7 @@ namespace RememberMyKey
 
             //Exit button
             trayIcon.ContextMenuStrip.Items.Add(new ToolStripMenuItem());
-            trayIcon.ContextMenuStrip.Items[1].Text = "Exit";
+            trayIcon.ContextMenuStrip.Items[1].Text = "Esci";
             trayIcon.ContextMenuStrip.Items[1].Click += TrayIconExitButton_Click;
 
             //Add event click
@@ -134,7 +134,7 @@ namespace RememberMyKey
         /// <param name="e"></param>
         static void TrayIconInfoButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Remember my drive! Brought to you by Francesco Tonini :)", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Remember my drive! By Francesco Tonini :)\n\nhttps://github.com/francescotonini/RememberMyDrive", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         /// <summary>
@@ -158,7 +158,7 @@ namespace RememberMyKey
             if (e.Button == MouseButtons.Left) 
             {
                 USBDevice[] devices = USBDevice.GetAllRemovableDevices();
-                string toShow = string.Format("You have {0} removable drives connected", devices.Length);
+                string toShow = string.Format("Hai {0} dispositivi rimovibili collegati", devices.Length);
                 foreach (USBDevice device in devices)
                 {
                     toShow += string.Format("\n{0} -> {1}", device.DriveLabel, device.Name);
